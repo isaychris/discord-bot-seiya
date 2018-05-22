@@ -1,12 +1,7 @@
-import configparser
 import requests
 from urllib.parse import quote
 
-config = configparser.ConfigParser()
-config.read('config.ini')
-API_KEY = config['DEFAULT']['TRANSLATE_API']
-
-def getTranslation(input):
+def getTranslation(input, API_KEY):
     base = 'https://translation.googleapis.com/language/translate/v2?'
 
     query = 'q=' + quote(input)

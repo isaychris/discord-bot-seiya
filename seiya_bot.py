@@ -3,12 +3,12 @@ import configparser
 from discord.ext import commands
 from plugins import rand_joke, cryptoPrice, saucenao, translater, image, helper
 
+description = '''A cool awesome bot created by isaychris'''
+bot = commands.Bot(command_prefix='!', description=description)
+
 config = configparser.ConfigParser()
 config.read('CONFIG.INI')
 token = config['DEFAULT']['BOT_TOKEN']
-
-description = '''A cool awesome bot created by isaychris'''
-bot = commands.Bot(command_prefix='!', description=description)
 
 @bot.event
 async def on_ready():
@@ -21,14 +21,14 @@ async def on_ready():
 @bot.command(name='translate', description='Translates english to japanese')
 async def translate(*args : str):
     message = ' '.join(args)
-    result = translater.getTranslation(message)
+    result = translater.getTranslation(message, config['DEFAULT']['TRANSLATE_KEY'])
 
     await bot.say(result)
 
 
 @bot.command(name='price', description='Retrieves the price of a cryptocurrency.')
 async def price(name : str ):
-    coin = cryptoPrice.getPrice(name)
+    coin = cryptoPrice.getPrice(name,)
 
     if coin is None:
         await bot.say('Unable to retrieve information ... ')
@@ -43,7 +43,7 @@ async def sauce(url : str):
         await bot.say('The image url you provided is invalid. Please try again.')
         return
 
-    anime = saucenao.getSauce(url)
+    anime = saucenao.getSauce(url, config['DEFAULT']['SAUCENAO_KEY'])
 
     if anime is None:
         await bot.say('Unable to retrieve information ... ')
@@ -51,11 +51,13 @@ async def sauce(url : str):
 
     await bot.say('{} - Episode {} - {}'.format(anime['source'], anime['part'], anime['est_time']))
 
+
 @bot.command(name='search', description='Returns the first image result on bing search engine.')
 async def search(*args : str):
     input = ' '.join(args)
-    result = image.getImage(input)
+    result = image.getImage(input, config['DEFAULT']['BING_KEY'])
     await bot.say(result)
+
 
 @bot.command(name='joke', description='Returns a random joke to the user.')
 async def joke():
@@ -67,5 +69,6 @@ async def joke():
 async def joined(member : discord.Member):
     """Says when a member joined."""
     await bot.say('{0.name} joined in {0.joined_at}'.format(member))
+
 
 bot.run(token)

@@ -1,12 +1,7 @@
-import configparser
 import requests
 from urllib.parse import quote
 
-config = configparser.ConfigParser()
-config.read('config.ini')
-API_KEY = config['DEFAULT']['BING_API']
-
-def getImage(input):
+def getImage(input, API_KEY):
     base = 'https://api.cognitive.microsoft.com/bing/v7.0/images/search?'
 
     query = 'q=' + quote(input)
