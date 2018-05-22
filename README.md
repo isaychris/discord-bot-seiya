@@ -6,7 +6,10 @@ Discord.py = https://github.com/Rapptz/discord.py
 Discord Bot Token = https://discordapp.com/developers/  
 
 ### Usage
-Simply insert your bot's token into seiya-bot.py and run
+Simply insert your bot's token into seiya-bot.py and run the following command:
+```
+python3 seiya-bot.py
+```
 
 
 # Commands
