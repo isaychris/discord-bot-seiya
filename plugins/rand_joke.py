@@ -1,6 +1,6 @@
 import random
 
-with open('jokes.txt', encoding="utf8") as fp:
+with open('plugins/jokes.txt', encoding="utf8") as fp:
     jokes = fp.read().split("\n")
 
 def getJoke():

@@ -1,6 +1,9 @@
 import requests
+import configparser
 
-API_KEY = '4eb5e0d4da1f065335a9e160a2265c1951f2cea7'
+config = configparser.ConfigParser()
+config.read('config.ini')
+API_KEY = config['DEFAULT']['SAUCENAO_API']
 
 def getSauce(image):
     url = 'https://saucenao.com/search.php?db=999&output_type=2&testmode=1&numres=16&api_key=' + API_KEY + '&url=' + image
