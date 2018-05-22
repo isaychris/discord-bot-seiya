@@ -1,14 +1,14 @@
 import discord
 import configparser
 from discord.ext import commands
-from plugins import rand_joke, cryptoPrice, saucenao
-
-description = '''A cool awesome bot created by isaychris'''
-bot = commands.Bot(command_prefix='!', description=description)
+from plugins import rand_joke, cryptoPrice, saucenao, translater, helper
 
 config = configparser.ConfigParser()
 config.read('CONFIG.INI')
 token = config['DEFAULT']['BOT_TOKEN']
+
+description = '''A cool awesome bot created by isaychris'''
+bot = commands.Bot(command_prefix='!', description=description)
 
 @bot.event
 async def on_ready():
@@ -16,6 +16,15 @@ async def on_ready():
     print(bot.user.name)
     print(bot.user.id)
     print('------')
+
+
+@bot.command(name='translate', description='Translates english to japanese')
+async def translate(*args : str):
+    message = ' '.join(args)
+    result = translater.getTranslation(message)
+
+    await bot.say(result)
+
 
 @bot.command(name='price', description='Retrieves the price of a cryptocurrency.')
 async def price(name : str ):
@@ -27,16 +36,21 @@ async def price(name : str ):
 
     await bot.say('{}: {}'.format(name, coin['price_usd']))
 
-@bot.command(name='sauce', description='Retrieves the source of an anime picture, returning its name, episode, and time.')
-async def sauce(image : str):
-    anime = saucenao.getSauce(image)
 
-    print(anime)
+@bot.command(name='sauce', description='Retrieves the source of an anime picture, returning its name, episode, and time.')
+async def sauce(url : str):
+    if helper.validate(url):
+        await bot.say('The image url you provided is invalid. Please try again.')
+        return
+
+    anime = saucenao.getSauce(url)
+
     if anime is None:
         await bot.say('Unable to retrieve information ... ')
         return
 
     await bot.say('{} - Episode {} - {}'.format(anime['source'], anime['part'], anime['est_time']))
+
 
 @bot.command(name='joke', description='Returns a random joke to the user.')
 async def joke():
