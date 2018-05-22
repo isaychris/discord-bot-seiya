@@ -3,7 +3,7 @@ A simple discord bot using discord.py
 
 ### Prerequisites
 Discord.py = https://github.com/Rapptz/discord.py  
-Discord Bot Account = https://discordpy.readthedocs.io/en/rewrite/discord.html
+Discord Bot Account = https://discordpy.readthedocs.io/en/rewrite/discord.html  
 Discord Bot Token = https://discordpy.readthedocs.io/en/rewrite/discord.html  
 
 ### Usage
