@@ -1,7 +1,7 @@
 import discord
 import configparser
 from discord.ext import commands
-from plugins import rand_joke, cryptoPrice, saucenao, translater, helper
+from plugins import rand_joke, cryptoPrice, saucenao, translater, image, helper
 
 config = configparser.ConfigParser()
 config.read('CONFIG.INI')
@@ -51,6 +51,11 @@ async def sauce(url : str):
 
     await bot.say('{} - Episode {} - {}'.format(anime['source'], anime['part'], anime['est_time']))
 
+@bot.command(name='search', description='Returns the first image result on bing search engine.')
+async def search(*args : str):
+    input = ' '.join(args)
+    result = image.getImage(input)
+    await bot.say(result)
 
 @bot.command(name='joke', description='Returns a random joke to the user.')
 async def joke():
