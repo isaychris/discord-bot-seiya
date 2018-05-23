@@ -1,9 +1,8 @@
 # seiya-bot
 A simple discord bot using discord.py
 
-If you would like to add this bot to your server, visit this link
-https://discordapp.com/oauth2/authorize?client_id=448148405521481728&scope=bot
-
+If you would like to add this bot to your server, visit this link:   
+https://discordapp.com/oauth2/authorize?client_id=448148405521481728&scope=bot  
 
 # Hosting
 
