@@ -1,6 +1,5 @@
 import requests
 
-
 def getSauce(image, API_KEY):
     url = 'https://saucenao.com/search.php?db=999&output_type=2&testmode=1&numres=16&api_key=' + API_KEY + '&url=' + image
 
