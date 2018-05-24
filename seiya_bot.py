@@ -1,6 +1,5 @@
 import discord
 import configparser
-import time
 from discord.ext import commands
 from plugins import rand_joke, cryptoPrice, saucenao, translater, image, dice, youtube as yt, helper
 
@@ -18,7 +17,7 @@ async def on_ready():
     print(bot.user.id)
     print('------')
 
-@bot.command(name='youtube', description='Returns the first video result from youtube.')
+@bot.command(name='youtube', description='Returns the first video result from youtube')
 async def youtube(*args : str):
     query = ' '.join(args)
     url = yt.getVideo(query, config['DEFAULT']['GOOGLE_KEY'])
@@ -35,10 +34,10 @@ async def translate(target : str, *args : str):
     message = ' '.join(args)
 
     if target == 'ja':
-        result = translater.getTranslation(target, message, config['DEFAULT']['TRANSLATE_KEY'])
+        result = translater.getTranslation(target, message, config['DEFAULT']['GOOGLE_KEY'])
         embed = discord.Embed(title='Japanese translation', description=result, color=0x7289da)
     else:
-        result = translater.getTranslation(target, message, config['DEFAULT']['TRANSLATE_KEY'])
+        result = translater.getTranslation(target, message, config['DEFAULT']['GOOGLE_KEY'])
         embed = discord.Embed(title='English translation', description=result, color=0x7289da)
 
     await bot.say(embed=embed)
