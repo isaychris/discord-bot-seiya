@@ -35,4 +35,5 @@ Command | Details
 ![Image](https://i.imgur.com/WYQdh0L.png)
 ![Image](https://i.imgur.com/nwzhxP4.png)
 ![Image](https://i.imgur.com/LPCoq0N.png)
-
+![Image](https://i.imgur.com/TxxVrK9.png)
+![Image](https://i.imgur.com/V52d065.png)
