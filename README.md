@@ -30,7 +30,9 @@ Command | Details
 
 # Examples
 ![Image](https://i.imgur.com/uFLYwrG.png)  
-![Image](https://i.imgur.com/sxZB3a4.png)
-![Image](https://i.imgur.com/P8T9p8U.png)
-![Image](https://i.imgur.com/pjrpbI4.png)
-![Image](https://i.imgur.com/NlMFCIx.png)
+![Image](https://i.imgur.com/GwRWGrm.png)
+![Image](https://i.imgur.com/uPKdECN.png)
+![Image](https://i.imgur.com/WYQdh0L.png)
+![Image](https://i.imgur.com/nwzhxP4.png)
+![Image](https://i.imgur.com/LPCoq0N.png)
+
