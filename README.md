@@ -4,9 +4,9 @@ A simple discord bot using discord.py
  
 # Hosting
 ### Prerequisites
-Python 3+
-Discord Bot Account & Token = https://discordpy.readthedocs.io/en/rewrite/discord.html  
-Google Cloud Server = https://cloud.google.com/  
+* Python 3+  
+* Discord Bot Account & Token = https://discordpy.readthedocs.io/en/rewrite/discord.html  
+* Google Cloud Server = https://cloud.google.com/  
 
 ### Setup
 To install the bot & its dependencies, run the following command:
