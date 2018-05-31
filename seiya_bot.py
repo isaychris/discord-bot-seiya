@@ -1,14 +1,17 @@
 import discord
 import configparser
+import time
 from discord.ext import commands
 from plugins import rand_joke, cryptoPrice, saucenao, translater, image, dice, youtube as yt, helper
 
-description = '''A cool awesome bot created by isaychris'''
+description = '''A simple discord bot using discord.py'''
 bot = commands.Bot(command_prefix='!', description=description)
 
 config = configparser.ConfigParser()
 config.read('config.ini')
 token = config['DEFAULT']['BOT_TOKEN']
+
+start = time.time()
 
 @bot.event
 async def on_ready():
@@ -59,17 +62,13 @@ async def price(name : str ):
 
 @bot.command(name='sauce', description='Retrieves the source of an anime image, returning its name, episode, and time.')
 async def sauce(url : str):
-    if helper.validate(url):
-        await bot.say('The image url you provided is invalid.')
-        return
-
     anime = saucenao.getSauce(url, config['DEFAULT']['SAUCENAO_KEY'])
 
     if anime is None:
         await bot.say('Unable to retrieve information ... ')
         return
 
-    message='{} - Episode {} - {}'.format(anime['source'], anime['part'], anime['est_time'])
+    message = '{} - Episode {} - {}'.format(anime['source'], anime['part'], anime['est_time'])
 
     embed = discord.Embed(title='Sauce', description=message, color=0x7289da)
 
@@ -95,19 +94,23 @@ async def joke():
     await bot.say(embed=embed)
 
 
-@bot.command(name='roll', description='Returns a random number between 0-100')
+@bot.command(name='roll', description='Returns a random number between 0-100.')
 async def roll():
     result = dice.getDice()
     embed = discord.Embed(title='Dice', description=result, color=0x7289da)
     await bot.say(embed=embed)
 
 
-@bot.command()
-async def joined(member : discord.Member):
-    """Says when a member joined."""
-    message = '{0.name} joined in {0.joined_at}'.format(member)
-    embed = discord.Embed(description=message, color=0x7289da)
+@bot.command(name='status', description='Returns the status of the bot.')
+async def status():
+    day, hour, minutes, seconds = helper.getElapsedTime((time.time() - start))
+    message = '{}d, {}h, {}m, {}s'.format(day, hour, minutes, seconds)
+
+    embed = discord.Embed(title=' ', description=' ', color=0x7289da)
+    embed.add_field(name='Online', value=message)
+    embed.add_field(name='Servers', value=str(len(bot.servers)))
 
     await bot.say(embed=embed)
+
 
 bot.run(token)
